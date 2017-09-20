@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="{{ .Page.Language | default "en" }}" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{ .Hugo.Generator }}
+    {{ partial "meta.html" . }}
+    <title>{{ .Title }} :: {{ .Site.Title }}</title>
+    <link rel="shortcut icon" href="https://rwstatic.ru/h/meta/favicon.ico" type="image/x-icon" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800&amp;subset=cyrillic-ext" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue_grey-pink.min.css" />
+
+      <link href="{{"css/hybrid.css" | relURL}}" rel="stylesheet">
+    <link href="{{"css/horsey.css" | relURL}}" rel="stylesheet">
+    <link href="{{"css/theme.css" | relURL}}" rel="stylesheet">
+    <link href="{{"css/dev-theme.css" | relURL}}" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  </head>
+  <body class="" data-url="{{ .RelPermalink }}">
+    {{ partial "menu.html" . }}
+    </div>
+    <div class="mdl-cell mdl-cell--7-col mdl-cell--9-col-tablet mdl-cell--12-col-phone">
+        <section>
+        <div id="overlay"></div>
+        <div class=" ">
+        {{if not .IsHome}}
+          <div>
+            <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                <span class="links">
+                {{ template "breadcrumb" dict "page" . "value" .Title }}
+                </span>
+            </div>
+          </div>
+        {{end}}
+        {{if .Params.tags }}
+          <div id="tags">
+            {{ range $index, $tag := .Params.tags }}
+              <a class="label label-default" href="{{$.Site.BaseURL}}/tags/{{ $tag | urlize }}">{{ $tag }}</a>
+            {{ end }}
+          </div>
+        {{end}}
+        <div id="body-inner">
+          {{if not .IsHome}}
+            <h1>{{.Title}}</h1>
+          {{end}}
+{{define "breadcrumb"}}
+{{ if .page.Parent}}
+{{$value := (printf "<a href='%s'>%s</a> > %s" .page.Parent.URL .page.Parent.Title .value)}}
+{{ template "breadcrumb" dict "page" .page.Parent "value" $value }}
+{{else}}
+ {{.value|safeHTML}}
+{{end}}
+{{end}}

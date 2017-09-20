@@ -1,0 +1,82 @@
+{{ $currentNode := . }}
+{{ $showvisitedlinks := .Site.Params.showVisitedLinks }}
+
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <span class="mdl-layout-title">
+                <a href='{{"/" | relURL}}' class="header-logo-link">
+                    <img src="{{ .Site.Params.projectLogoUrl }}" width="30" />
+                    {{ .Site.Params.projectName }}
+                </a>
+            </span>
+        </div>
+    </header>
+
+    <main class="mdl-layout__content">
+        <div class="page-content">
+            <div class="mdl-grid devsite-full-site-width">
+                <div class="devsite-nav mdl-cell mdl-cell--3-col mdl-cell--3-col-tablet mdl-cell--12-col-phone">
+                    <nav class="devsite-section-nav">
+                        <ul class="devsite-section-nav-main">
+                            {{range .Site.Home.Sections.ByWeight}}
+                              {{ template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks}}
+                            {{end}}
+                        </ul>
+                    </nav>
+            <!-- templates -->
+            {{ define "section-tree-nav" }}
+            {{ $showvisitedlinks := .showvisitedlinks }}
+            {{ $currentNode := .currentnode }}
+            {{with .sect}}
+            {{if .IsSection}}
+            {{safeHTML .Params.head}}
+            <li data-nav-id="{{.URL}}" class="devsite-nav-item devsite-nav-item-main
+                        {{if .IsAncestor $currentNode }}parent{{end}}
+                        {{if eq .UniqueID $currentNode.UniqueID}}active{{end}}
+                        {{if .Params.alwaysopen}}parent{{end}}
+                        ">
+                <a href="{{ .RelPermalink}}" class="devsite-nav-title devsite-nav-item-main-title">
+                    <span>{{safeHTML .Params.Pre}}{{.Title}}{{safeHTML .Params.Post}}</span>
+
+                    {{ $numberOfPages := (add (len .Pages) (len .Sections)) }}
+                    {{ if ne $numberOfPages 0 }}
+
+                    {{if or (.IsAncestor $currentNode) (.Params.alwaysopen) }}
+                    <!--<i class="fa fa-angle-down fa-lg category-icon"></i>-->
+                    {{else}}
+                    <!--<i class="fa fa-angle-right fa-lg category-icon"></i>-->
+                    {{end}}
+
+                    {{ end }}
+                </a>
+                {{ if ne $numberOfPages 0 }}
+                <ul class="devsite-nav-expandable">
+                    {{ .Scratch.Set "pages" .Pages }}
+                    {{ if .Sections}}
+                    {{ .Scratch.Set "pages" (.Pages | union .Sections) }}
+                    {{end}}
+                    {{ $pages := (.Scratch.Get "pages") }}
+
+
+                    {{ range $pages.ByWeight }}
+                    {{ if and .Params.hidden (not $.showhidden) }}
+                    {{else}}
+                    {{ template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks }}
+                    {{end}}
+                    {{ end }}
+                </ul>
+                {{ end }}
+            </li>
+            {{else}}
+            {{ if not .Params.Hidden }}
+            <li data-nav-id="{{.URL}}" class="devsite-nav-item dd-item {{if eq .UniqueID $currentNode.UniqueID}}active{{end}}">
+                <a href="{{ .RelPermalink}}" class="devsite-nav-title">
+                    <span>{{safeHTML .Params.Pre}}{{.Title}}{{safeHTML .Params.Post}}</span>
+                </a>
+            </li>
+            {{ end }}
+            {{end}}
+            {{ end }}
+            {{ end }}

@@ -1,0 +1,8 @@
+# theme.toml template for a Hugo theme
+
+name = "adplatform-docs"
+min_version = 0.1
+
+[author]
+  name = "Artur Geraschenko"
+  homepage = "https://github.com/arturgspb"
