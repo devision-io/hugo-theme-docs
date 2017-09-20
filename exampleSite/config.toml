@@ -13,6 +13,7 @@ title = "ProjectName | CompanyName"
 [params]
 projectName = "My Project"
 projectLogoUrl = "https://rwstatic.ru/h/meta/avatar.png"
+materialDesignTheme = "deep_purple-blue" # default is 'blue_grey-pink'
 
 noHomeIcon = false # default is false
 noSearch = false # default is false
