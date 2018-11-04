@@ -1497,3 +1497,22 @@ pre .copy-to-clipboard:hover {
         margin-left: 0px;
     }
 }
+
+
+.swagger-ui .info {
+    display: none;
+}
+
+.swagger-ui .wrapper {
+    width: 100%!important;
+    max-width: none!important;
+    padding: 0!important;
+}
+
+.swagger-ui .model .model span.prop span {
+    display: none;
+}
+
+.swagger-ui .model .model span.prop span.prop-type {
+    display: block;
+}
