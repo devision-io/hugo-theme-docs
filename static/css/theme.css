@@ -1516,3 +1516,7 @@ pre .copy-to-clipboard:hover {
 .swagger-ui .model .model span.prop span.prop-type {
     display: block;
 }
+
+.swagger-ui .model-title {
+    font-size: 13px;
+}
