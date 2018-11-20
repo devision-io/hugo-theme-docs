@@ -1518,5 +1518,5 @@ pre .copy-to-clipboard:hover {
 }
 
 .swagger-ui .model-title {
-    font-size: 13px;
+    font-size: 13px!important;
 }
