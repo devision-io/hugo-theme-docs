@@ -11,12 +11,38 @@
                     {{ .Site.Params.projectName }}
                 </a>
             </span>
+
+            <div class="devsite-header-upper-tabs"></div>
+
+            <div class="devsite-search-form">
+                <div class="searchbox">
+                        <input class="devsite-search-field" type="text" data-search-input
+                               placeholder="Поиск"
+                               id="search-by">
+
+                        <div class="devsite-search-image material-icons" aria-hidden="true">search</div>
+                    {{- if not .Site.Params.disableSearch}}
+                        <script type="text/javascript" src="{{"js/lunr.min.js" | relURL}}"></script>
+                        <script type="text/javascript" src="{{"js/auto-complete.js" | relURL}}"></script>
+                        <link href="{{"css/auto-complete.css" | relURL}}" rel="stylesheet">
+                        <script type="text/javascript">
+                            {{ if .Site.IsMultiLingual }}
+                            var baseurl = "{{.Site.BaseURL}}{{.Site.LanguagePrefix}}";
+                            {{ else }}
+                            var baseurl = "{{.Site.BaseURL}}";
+                            {{ end }}
+                        </script>
+                        <script type="text/javascript" src="{{"js/search.js" | relURL}}"></script>
+                    {{- end}}
+                </div>
+            </div>
         </div>
     </header>
 
     <main class="mdl-layout__content">
         <div class="page-content">
             <div class="mdl-grid devsite-full-site-width">
+
                 <div class="devsite-nav mdl-cell mdl-cell--3-col mdl-cell--3-col-tablet mdl-cell--12-col-phone">
                     <nav class="devsite-section-nav">
                         <ul class="devsite-section-nav-main">

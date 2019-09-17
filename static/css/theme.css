@@ -1520,3 +1520,67 @@ pre .copy-to-clipboard:hover {
 .swagger-ui .model-title {
     font-size: 13px!important;
 }
+
+
+
+.devsite-header-upper-tabs {
+    display: inline-block;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 0px;
+    flex: 1 1 0;
+    overflow-y: auto;
+    vertical-align: top;
+    -webkit-transition: margin .2s,width .2s,-webkit-box-flex .2s;
+    transition: margin .2s,width .2s,-webkit-box-flex .2s;
+    transition: flex .2s,margin .2s,width .2s;
+    transition: flex .2s,margin .2s,width .2s,-webkit-box-flex .2s,-ms-flex .2s;
+}
+
+.devsite-search-form {
+    background: #fbfbfbba;
+    border-radius: 2px;
+    display: inline-block;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    height: 36px;
+    margin: 6px 0 6px 24px;
+    opacity: 1;
+    position: relative;
+    text-align: left;
+    -webkit-transition: background .2s,opacity .2s,width .2s,-webkit-box-flex .2s;
+    transition: background .2s,opacity .2s,width .2s,-webkit-box-flex .2s;
+    transition: background .2s,flex .2s,opacity .2s,width .2s;
+    transition: background .2s,flex .2s,opacity .2s,width .2s,-webkit-box-flex .2s,-ms-flex .2s;
+    vertical-align: top;
+    width: 400px;
+}
+
+input.devsite-search-field {
+    background: 0;
+    border: 0;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: left;
+    color: rgba(0,0,0,.54);
+    height: 20px;
+    padding: 8px 8px 8px 72px;
+    -webkit-transition: color .2s;
+    transition: color .2s;
+    width: 80%;
+}
+
+input.devsite-search-field:focus {
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+
+.devsite-search-image {
+    color: rgba(0,0,0,.54);
+    left: 24px;
+    position: absolute;
+    top: 6px;
+    -webkit-transition: color .2s;
+    transition: color .2s;
+}
