@@ -58,9 +58,9 @@
             {{with .sect}}
             {{if .IsSection}}
             {{safeHTML .Params.head}}
-            <li data-nav-id="{{.URL}}" class="devsite-nav-item devsite-nav-item-main
+            <li data-nav-id="{{.RelPermalink}}" class="devsite-nav-item devsite-nav-item-main
                         {{if .IsAncestor $currentNode }}parent{{end}}
-                        {{if eq .UniqueID $currentNode.UniqueID}}active{{end}}
+                        {{if eq .File.UniqueID $currentNode.UniqueID}}active{{end}}
                         {{if .Params.alwaysopen}}parent{{end}}
                         ">
                 <a href="{{ .RelPermalink}}" class="devsite-nav-title devsite-nav-item-main-title">
