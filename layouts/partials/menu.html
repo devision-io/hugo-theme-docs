@@ -60,7 +60,7 @@
             {{safeHTML .Params.head}}
             <li data-nav-id="{{.RelPermalink}}" class="devsite-nav-item devsite-nav-item-main
                         {{if .IsAncestor $currentNode }}parent{{end}}
-                        {{if eq .File.UniqueID $currentNode.UniqueID}}active{{end}}
+                        {{if eq .File.UniqueID $currentNode.File.UniqueID}}active{{end}}
                         {{if .Params.alwaysopen}}parent{{end}}
                         ">
                 <a href="{{ .RelPermalink}}" class="devsite-nav-title devsite-nav-item-main-title">
@@ -97,7 +97,7 @@
             </li>
             {{else}}
             {{ if not .Params.Hidden }}
-            <li data-nav-id="{{.URL}}" class="devsite-nav-item dd-item {{if eq .UniqueID $currentNode.UniqueID}}active{{end}}">
+            <li data-nav-id="{{.URL}}" class="devsite-nav-item dd-item {{if eq .File.UniqueID $currentNode.File.UniqueID}}active{{end}}">
                 <a href="{{ .RelPermalink}}" class="devsite-nav-title">
                     <span>{{safeHTML .Params.Pre}}{{.Title}}{{safeHTML .Params.Post}}</span>
                 </a>
